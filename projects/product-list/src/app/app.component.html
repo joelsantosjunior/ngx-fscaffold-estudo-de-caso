@@ -1,0 +1,8 @@
+<h2>lista de produtos disponíveis</h2>
+<ul>
+  <li *ngFor="let produto of produtos">
+    {{produto.nome}} - R$ {{produto.preco}}
+    <button (click)="adicionarProduto(produto)"> Adicionar ao carrinho </button>
+  </li>
+</ul>
+<router-outlet></router-outlet>

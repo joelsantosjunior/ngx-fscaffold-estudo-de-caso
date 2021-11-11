@@ -3,5 +3,336 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "product-list": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/product-list",
+      "sourceRoot": "projects/product-list/src",
+      "prefix": "wc",
+      "architect": {
+        "build": {
+          "builder": "@angular-builders/custom-webpack:browser",
+          "options": {
+            "outputPath": "dist/product-list",
+            "index": "projects/product-list/src/index.html",
+            "main": "projects/product-list/src/main.single-spa.ts",
+            "polyfills": "projects/product-list/src/polyfills.ts",
+            "tsConfig": "projects/product-list/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/product-list/src/favicon.ico",
+              "projects/product-list/src/assets"
+            ],
+            "styles": [
+              "projects/product-list/src/styles.scss"
+            ],
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "projects/product-list/extra-webpack.config.js",
+              "libraryName": "product-list",
+              "libraryTarget": "umd"
+            },
+            "deployUrl": "/"
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/product-list/src/environments/environment.ts",
+                  "with": "projects/product-list/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "none"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "outputHashing": "none"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-builders/custom-webpack:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "product-list:build:production"
+            },
+            "development": {
+              "browserTarget": "product-list:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "product-list:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/product-list/src/test.ts",
+            "polyfills": "projects/product-list/src/polyfills.ts",
+            "tsConfig": "projects/product-list/tsconfig.spec.json",
+            "karmaConfig": "projects/product-list/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/product-list/src/favicon.ico",
+              "projects/product-list/src/assets"
+            ],
+            "styles": [
+              "projects/product-list/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "navbar": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/navbar",
+      "sourceRoot": "projects/navbar/src",
+      "prefix": "wc",
+      "architect": {
+        "build": {
+          "builder": "@angular-builders/custom-webpack:browser",
+          "options": {
+            "outputPath": "dist/navbar",
+            "index": "projects/navbar/src/index.html",
+            "main": "projects/navbar/src/main.single-spa.ts",
+            "polyfills": "projects/navbar/src/polyfills.ts",
+            "tsConfig": "projects/navbar/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/navbar/src/favicon.ico",
+              "projects/navbar/src/assets"
+            ],
+            "styles": [
+              "projects/navbar/src/styles.scss"
+            ],
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "projects/navbar/extra-webpack.config.js",
+              "libraryName": "navbar",
+              "libraryTarget": "umd"
+            },
+            "deployUrl": "http://localhost:4300/"
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/navbar/src/environments/environment.ts",
+                  "with": "projects/navbar/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "none"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "outputHashing": "none"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-builders/custom-webpack:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "navbar:build:production"
+            },
+            "development": {
+              "browserTarget": "navbar:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "navbar:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/navbar/src/test.ts",
+            "polyfills": "projects/navbar/src/polyfills.ts",
+            "tsConfig": "projects/navbar/tsconfig.spec.json",
+            "karmaConfig": "projects/navbar/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/navbar/src/favicon.ico",
+              "projects/navbar/src/assets"
+            ],
+            "styles": [
+              "projects/navbar/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "shopping-cart": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/shopping-cart",
+      "sourceRoot": "projects/shopping-cart/src",
+      "prefix": "wc",
+      "architect": {
+        "build": {
+          "builder": "@angular-builders/custom-webpack:browser",
+          "options": {
+            "outputPath": "dist/shopping-cart",
+            "index": "projects/shopping-cart/src/index.html",
+            "main": "projects/shopping-cart/src/main.single-spa.ts",
+            "polyfills": "projects/shopping-cart/src/polyfills.ts",
+            "tsConfig": "projects/shopping-cart/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/shopping-cart/src/favicon.ico",
+              "projects/shopping-cart/src/assets"
+            ],
+            "styles": [
+              "projects/shopping-cart/src/styles.scss"
+            ],
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "projects/shopping-cart/extra-webpack.config.js",
+              "libraryName": "shopping-cart",
+              "libraryTarget": "umd"
+            },
+            "deployUrl": "http://localhost:4100/"
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/shopping-cart/src/environments/environment.ts",
+                  "with": "projects/shopping-cart/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "none"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "outputHashing": "none"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-builders/custom-webpack:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "shopping-cart:build:production"
+            },
+            "development": {
+              "browserTarget": "shopping-cart:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "shopping-cart:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/shopping-cart/src/test.ts",
+            "polyfills": "projects/shopping-cart/src/polyfills.ts",
+            "tsConfig": "projects/shopping-cart/tsconfig.spec.json",
+            "karmaConfig": "projects/shopping-cart/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/shopping-cart/src/favicon.ico",
+              "projects/shopping-cart/src/assets"
+            ],
+            "styles": [
+              "projects/shopping-cart/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "product-list"
 }
